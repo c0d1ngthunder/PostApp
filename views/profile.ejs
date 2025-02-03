@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <div class="p-10 min-h-screen w-full bg-zinc-800 text-white">
       <div class="flex justify-between">
-        <h1 class="text-3xl text-white mb-4">Profile</h1>
+        <div class="flex gap-4">
+          <a href="/feed" class="text-3xl"><i class="ri-arrow-left-line"></i></a>
+          <h1 class="text-3xl text-white mb-4">Profile</h1>
+        </div>
         <input
           type="button"
           value="Logout"
@@ -41,8 +48,10 @@
             <a href="/like/<%= item._id %>" class="text-blue-500">
               <%= item.likes.indexOf(id) === -1 ? "Like" : "Liked" %>
             </a>
+            <% if (id!=item.user.id){ %>
             <a href="/edit/<%= item._id %>" class="text-zinc-500">Edit</a>
             <a href="/delete/<%= item._id %>" class="text-red-500">Delete</a>
+            <% } %>
           </div>
         </div>
         <% }) %>

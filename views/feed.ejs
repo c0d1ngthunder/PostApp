@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="min-h-screen p-10 bg-zinc-800 text-white">
+      <div class="nav flex gap-8 justify-between items-center p-4">
+        <h1 class="text-2xl">EchoPost</h1>
+        <div class="flex gap-8">
+          <a href="/post" class="text-3xl"
+            ><i class="ri-add-circle-line"></i
+          ></a>
+          <a class="text-3xl" href="/profile"
+            ><i class="ri-account-circle-fill"></i
+          ></a>
+        </div>
+      </div>
+      <div class="w-full feed">
+        <% posts.reverse().forEach((item)=>{ %>
+        <div class="w-full bg-zinc-600 my-4 p-4 rounded-md">
+          <h4 class="font-bold"><%= item.user.name %></h4>
+          <p><%= item.postdata %></p>
+          <div class="reactions flex gap-4">
+            <small><%= item.likes.length %></small>
+            <a href="/like/<%= item._id %>" class="text-blue-500">
+              <%= item.likes.indexOf(id) === -1 ? "Like" : "Liked" %>
+            </a>
+            <% if (id.toString()===item.user.id){ %>
+            <a href="/edit/<%= item._id %>" class="text-zinc-500">Edit</a>
+            <a href="/delete/<%= item._id %>" class="text-red-500">Delete</a>
+            <% } %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -37,7 +37,7 @@ app.post("/register",async (req,res)=>{
 
 app.get("/profile",isLoggedIn,async (req,res)=>{
     let user = await userModel.findOne({username:req.user.username}).populate("posts")
-    let id = req.user._id
+    let id = user._id
     res.render("profile",{user,id})
 })
 
@@ -62,7 +62,7 @@ app.post("/login",async (req,res)=>{
             if(result){
                 const token = jwt.sign({username},"secretkey")
                 res.cookie("token",token)
-                res.status(200).redirect("/profile")
+                res.status(200).redirect("/feed")
             }
             else{
                 res.status(500).send("Invalid credentials")
@@ -78,7 +78,7 @@ app.get("/login",(req,res)=>{
     res.render("login")
 })
 
-app.get("/logout",(req,res)=>{
+app.get("/logout",isLoggedIn,(req,res)=>{
     res.clearCookie("token")
     res.redirect("/login")
 })
@@ -96,24 +96,31 @@ app.get("/like/:id",isLoggedIn,async (req,res)=>{
         post.likes.splice(req.user.id,1)
     }
     await post.save()
-    res.redirect("/profile")
+    res.redirect("/feed")
 })
 
-app.get("/edit/:id",async (req,res)=>{
+app.get("/edit/:id",isLoggedIn,async (req,res)=>{
     let post = await postModel.findOne({_id:req.params.id})
 
     res.render("edit",{post})
 })
 
-app.post("/edit/:id",async (req,res)=>{
+app.post("/edit/:id",isLoggedIn,async (req,res)=>{
     const {postdata} = req.body;
     const post = await postModel.findOneAndUpdate({_id:req.params.id},{postdata})
     res.redirect("/profile")
 })
 
-app.get("/delete/:id",async (req,res)=>{
+app.get("/delete/:id",isLoggedIn,async (req,res)=>{
     const post = await postModel.findOneAndDelete({_id:req.params.id})
     res.redirect("/profile")
+})
+
+app.get("/feed",isLoggedIn,async (req,res)=>{
+    let posts = await postModel.find().populate("user")
+    let user = await userModel.findOne({username:req.user.username});
+    let id = user._id
+    res.render("feed",{posts,id})
 })
 
 function isLoggedIn(req,res,next){
@@ -130,7 +137,7 @@ function isLoggedIn(req,res,next){
 function isSignedUp(req,res,next){
     const token = req.cookies.token
     if(token){
-        res.redirect("/profile")
+        res.redirect("/feed")
     }else{
         next()
     }

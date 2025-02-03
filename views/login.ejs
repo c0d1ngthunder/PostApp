@@ -7,12 +7,14 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <div class="min-h-screen bg-zinc-800 p-10">
+    <div class="min-h-screen text-white bg-zinc-800 p-10">
+        <h1 class="text-2xl mx-4 my-8">Login to EchoPost</h1>
         <form action="/login" method="post">
             <input class="bg-zinc-600 rounded text-white p-2 mx-2" type="text" name="username" placeholder="username">
             <input class="bg-zinc-600 rounded text-white p-2 mx-2" type="password" name="password" placeholder="password">
             <input class="bg-blue-500 rounded p-2 text-white" type="submit" value="Login">
         </form>
+        <a href="/" class="my-4 block text-blue-500 mx-8 text-md">Don't have an account</a>
     </div>
 </body>
 </html>
