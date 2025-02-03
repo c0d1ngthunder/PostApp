@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 
-app.get("/",(req,res)=>{
+app.get("/",isSignedUp,(req,res)=>{
     res.render("index")
 })
 
@@ -124,6 +124,15 @@ function isLoggedIn(req,res,next){
         next()
     }else{
         res.redirect("/login")
+    }
+}
+
+function isSignedUp(req,res,next){
+    const token = req.cookies.token
+    if(token){
+        res.redirect("/profile")
+    }else{
+        next()
     }
 }
 
