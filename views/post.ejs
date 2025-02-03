@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>
+     <div class="min-h-screen bg-zinc-800 p-10">
+        <h1 class="text-3xl text-white mb-4">Create Post</h1>
+        <form action="/post" method="post">
+            <input type="textarea" name="postdata" class="w-1/2 bg-transparent border-b-2 h-1/2 outline-none border-white text-white p-2" placeholder="What's on your mind?">
+            <input type="submit" value="Create Post" class="bg-blue-500 rounded-md block text-white p-2 mt-4">
+        </form>
+     </div>
+</body>
+</html>

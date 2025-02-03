@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body>
+    <div class="p-10 min-h-screen w-full bg-zinc-800 text-white">
+      <div class="flex justify-between">
+        <h1 class="text-3xl text-white mb-4">Profile</h1>
+        <input
+          type="button"
+          value="Logout"
+          name="logout"
+          class="bg-red-500 p-2 w-24 h-10 rounded-md"
+          onclick="window.location.href = '/logout'"
+        />
+      </div>
+      <div class="flex flex-col">
+        <h3 class="text-2xl"><%= user.name %></h3>
+        @<%= user.username %> | <%= user.email %>
+        <input
+          type="button"
+          value="Create A Post"
+          name="createPost"
+          class="bg-blue-500 p-2 w-44 rounded-md mt-4"
+          onclick="window.location.href = '/post' "
+        />
+      </div>
+      <h3 class="mt-4 text-2xl">Your Posts</h3>
+      <div class="w-full">
+        <% user.posts.reverse().forEach((item)=>{ %>
+        <div class="w-full bg-zinc-600 my-4 p-4 rounded-md">
+          <h4 class="font-bold"><%= user.name %></h4>
+          <p><%= item.postdata %></p>
+          <div class="reactions flex gap-4">
+            <small><%= item.likes.length %></small>
+            <a href="/like/<%= item._id %>" class="text-blue-500">
+              <%= item.likes.indexOf(id) === -1 ? "Like" : "Liked" %>
+            </a>
+            <a href="/edit/<%= item._id %>" class="text-zinc-500">Edit</a>
+            <a href="/delete/<%= item._id %>" class="text-red-500">Delete</a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>

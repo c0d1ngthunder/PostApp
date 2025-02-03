@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="bg-zinc-800 min-h-screen p-10 text-white">
+        <form action="/edit/<%= post._id %>" method="post">
+            <textarea name="postdata" class="resize-none bg-zinc-600" ><%= post.postdata %></textarea>
+            <input type="submit" value="Edit Post" class="bg-blue-500 p-2 w-44 rounded-md mt-4">
+        </form>
+    </div>
+</body>
+</html>

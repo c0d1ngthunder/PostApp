@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="min-h-screen bg-zinc-800 p-10">
+        <h1 class="text-3xl mx-2 text-white mb-4">Create Account</h1>
+        <form action="/register" method="post">
+            <input class="bg-zinc-600 rounded text-white p-2 mx-2" type="text" name="name" placeholder="name">
+            <input class="bg-zinc-600 rounded text-white p-2 mx-2" type="text" name="username" placeholder="username">
+            <input class="bg-zinc-600 rounded text-white p-2 mx-2" type="email" name="email" placeholder="email">
+            <input class="bg-zinc-600 rounded text-white p-2 mx-2" type="number" name="age" placeholder="age" >
+            <input class="bg-zinc-600 rounded text-white p-2 mx-2" type="password" name="password" placeholder="password">
+            <input class="rounded-md bg-blue-500 p-2" type="submit" value="Create Account">
+        </form>
+    </div>
+</body>
+</html>
