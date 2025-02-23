@@ -18,15 +18,22 @@
           <a href="/feed" class="text-3xl"><i class="ri-arrow-left-line"></i></a>
           <h1 class="text-3xl text-white mb-4">Profile</h1>
         </div>
-        <input
-          type="button"
-          value="Logout"
-          name="logout"
-          class="bg-red-500 p-2 w-24 h-10 rounded-md"
-          onclick="window.location.href = '/logout'"
-        />
+        <div class="flex gap-4">
+
+          <input type="button" value="Change profile pic" name="changeProfilePic" class="bg-blue-500 p-2 w-44 h-10 rounded-md" onclick="window.location.href = '/profile/upload'"/>
+          <input
+            type="button"
+            value="Logout"
+            name="logout"
+            class="bg-red-500 p-2 w-24 h-10 rounded-md"
+            onclick="window.location.href = '/logout'"
+          />
+        </div>
       </div>
       <div class="flex flex-col">
+        <div class="h-20 w-20 rounded-full overflow-hidden">
+          <img src="/images/uploads/<%= user.profilepic %>" alt="">
+        </div>
         <h3 class="text-2xl"><%= user.name %></h3>
         @<%= user.username %> | <%= user.email %>
         <input

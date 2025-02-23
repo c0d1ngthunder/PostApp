@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>    
+</head>
+<body>
+    <div class="w-full h-screen flex p-10 bg-zinc-800 text-white">
+
+        <form action="/add-profile-photo" method="post" enctype="multipart/form-data">
+            <input class="bg-zinc-600 p-4 rounded-md mx-4" type="file" name="image">
+            <input class="bg-blue-500 px-4 py-2 rounded-md" type="submit" value="Add Profile Photo">
+        </form>
+    </div>
+</body>
+</html>

@@ -18,12 +18,19 @@
           <a href="/post" class="text-3xl"
             ><i class="ri-add-circle-line"></i
           ></a>
-          <a class="text-3xl" href="/profile"
-            ><i class="ri-account-circle-fill"></i
-          ></a>
+          <a class="text-3xl" href="/profile">
+            <% if (profilepic){%>
+            <img
+            class="rounded-full h-10 w-10"
+              src="/images/uploads/<%= profilepic %>"
+              alt=<i class="ri-account-circle-fill" ></i>
+              <%}else{%>
+            <i class="ri-account-circle-fill"></i>
+            <%}%> </a>
         </div>
       </div>
       <div class="w-full feed">
+        <% if (posts.length>0){ %>
         <% posts.reverse().forEach((item)=>{ %>
         <div class="w-full bg-zinc-600 my-4 p-4 rounded-md">
           <h4 class="font-bold"><%= item.user.name %></h4>
@@ -31,7 +38,7 @@
           <div class="reactions flex gap-4">
             <small><%= item.likes.length %></small>
             <a href="/like/<%= item._id %>" class="text-blue-500">
-              <%= item.likes.indexOf(id) === -1 ? "Like" : "Liked" %>
+              <%= (item.likes.indexOf(id) === -1) ? "Like" : "Liked" %>
             </a>
             <% if (id.toString()===item.user.id){ %>
             <a href="/edit/<%= item._id %>" class="text-zinc-500">Edit</a>
@@ -40,6 +47,9 @@
           </div>
         </div>
         <% }) %>
+        <% }else{ %>
+            <h2 class="text-center text-xl text-gray-400">No Posts yet</h2>
+        <% } %>
       </div>
     </div>
   </body>
